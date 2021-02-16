@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    container_name: web
+    image: php:7.4-apache
+    build: ./docker-compose/web
+    hostname: web
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - bridge
+
+  db:
+    container_name: db
+    image: mariadb:10.5.8
+    build: ./docker-compose/db
+    hostname: db
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.mariadb:/var/lib/mysql:rw
+    networks:
+      - bridge
+
+networks:
+  default:
+    external:
+      name: bridge
+  bridge:
+    name: docker.internal
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.254.0/24"

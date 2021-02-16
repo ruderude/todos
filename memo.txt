@@ -1,0 +1,10 @@
+# Docker の環境を構築
+docker-compose up -d
+
+# Laravel の環境を構築
+docker exec web composer install
+docker exec web php artisan key:generate
+docker exec web php artisan migrate --seed
+
+docker exec web npm install
+docker exec web npm run dev
