@@ -12,24 +12,27 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('todo.index');
+    return redirect()->route('todo.top');
 });
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['prefix' => 'todo', 'middleware' => 'auth'], function(){
 
-    Route::get('todo/all', 'TodosController@all')->name('todo.all');
-    Route::resource('todo', 'TodosController', ['only' => ['index', 'store', 'update', 'show', 'destroy']]);
-
+    Route::get('', 'TodosController@index')->name('todo.top');
+    Route::post('store', 'TodosController@store')->name('todo.store');
+    Route::post('update/{id}', 'TodosController@update')->name('todo.update');
+    Route::get('delete/{id}', 'TodosController@delete')->name('todo.delete');
+    Route::get('all', 'TodosController@all')->name('todo.all');
 
 });
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
 
-    Route::resource('user', 'UsersController', ['only' => ['index', 'store', 'update', 'show', 'destroy']]);
+    Route::get('', 'UsersController@index')->name('user.top');
+    Route::post('update', 'UsersController@update')->name('user.update');
 
 });
 

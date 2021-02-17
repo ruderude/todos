@@ -11,8 +11,6 @@ use App\Http\Repositories\TodoRepository;
 class TodoService
 {
 
-    private const NEW = 0;
-
     private $repository = null;
 
     public function __construct(TodoRepository $repository)
@@ -20,30 +18,19 @@ class TodoService
         $this->repository = $repository;
     }
 
-    public function index()
-    {
-
-    }
-
     public function store($request)
     {
         $this->repository->store($request);
     }
 
-    public function destroy(int $type, int $id)
+    public function delete($id)
     {
-
-    }
-
-    public function show(int $id)
-    {
-
+        $this->repository->delete($id);
     }
 
     public function update($request, $id)
     {
-        $res = $this->repository->update($request, $id);
-        return $res;
+        $this->repository->update($request, $id);
     }
 
     public function all()

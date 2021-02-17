@@ -12,11 +12,6 @@ use Log;
 
 class TodoRepository {
 
-    public function index()
-    {
-
-    }
-
     public function store($request)
     {
         try {
@@ -31,6 +26,7 @@ class TodoRepository {
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+            return $e;
         }
     }
 
@@ -57,9 +53,18 @@ class TodoRepository {
     }
 
 
-    public function destroy()
+    public function delete($id)
     {
+        try {
+            DB::beginTransaction();
 
+            $task = Task::find($id);
+            $task->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
     }
 
 

@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('todo.index') }}">
+                <a class="navbar-brand" href="{{ route('todo.top') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -56,7 +56,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.index') }}">
+                                    <a class="dropdown-item" href="{{ route('user.top') }}">
                                         {{ __('アカウント編集') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

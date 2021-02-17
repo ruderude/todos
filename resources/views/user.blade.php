@@ -2,6 +2,9 @@
 
 @section('content')
 
-<User></User>
+<User
+    :name='@json($name)'
+    :email='@json($email)'
+></User>
 
 @endsection

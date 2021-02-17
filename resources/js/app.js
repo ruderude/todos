@@ -33,9 +33,13 @@ import './bootstrap'
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Todo from './components/todo/todoComponent'
 import User from './components/user/userComponent'
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
 
 const app = new Vue({

@@ -29,16 +29,6 @@ class TodosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,30 +37,8 @@ class TodosController extends Controller
     public function store(Request $request)
     {
         Log::debug($request);
-        $res = $this->service->store($request);
-        Log::debug('$resは：' . $res);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $this->service->store($request);
+        return '200 OK';
     }
 
     /**
@@ -85,19 +53,14 @@ class TodosController extends Controller
         Log::debug('アップデート：' . $request->done);
         Log::debug('名前は：' . $request->name);
         Log::debug('IDは：' . $id);
-        $res = $this->service->update($request, $id);
-        Log::debug('$resは：' . $res);
+        $this->service->update($request, $id);
+        return '200 OK';
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $this->service->delete($id);
+        return '消去 OK';
     }
 
     public function all()
@@ -105,4 +68,5 @@ class TodosController extends Controller
         $todos = $this->service->all();
         return response()->json(['todos' => $todos]);
     }
+
 }
