@@ -30,7 +30,7 @@ class TodoService
 
     public function update($request, $id)
     {
-        $this->repository->update($request, $id);
+        return $this->repository->update($request, $id);
     }
 
     public function all()

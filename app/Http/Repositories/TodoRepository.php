@@ -43,7 +43,9 @@ class TodoRepository {
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+            return false;
         }
+        return true;
     }
 
     public function all()
