@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h3>やることリスト</h3>
+                            <h3>やることリストZZZ</h3>
                             <ul class="list-group">
                                 <li class="list-group-item list_item" v-for="(todo) in todos" :key="todo.id">
                                     <div class="row mt-2">
